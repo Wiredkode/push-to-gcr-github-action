@@ -57,15 +57,11 @@ echo $INPUT_REGISTRY
 echo $INPUT_SECRET_KEY_ID
 if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
     echo "Secrets input..." 
-    echo "ola"$INPUT_SECRET_KEY_VAL >> secret.secret
-    echo "ola" >> secret1.secret
     echo "File creating "
+    echo $INPUT_SECRET_KEY_VAL >> secret.secret
     cat secret.secret
-    echo "File created "
-    echo "File second creating "
-    cat secret1.secret
-    echo "File second created "
-    SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret1.secret"
+    echo "File created"
+    SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
 else
    echo "Secrets null..."  
 fi
@@ -75,6 +71,7 @@ echo "docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME 
 
 
 if DOCKER_BUILDKIT=1 docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT; then
+    rm secret.secret
     echo "Image built ..."
 else
     echo "Image building failed. Exiting ..."
