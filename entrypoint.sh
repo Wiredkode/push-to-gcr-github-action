@@ -62,9 +62,9 @@ if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
     echo "File creating "
     cat secret.secret
     echo "File created "
-    echo "File creating "
+    echo "File second creating "
     cat secret1.secret
-    echo "File created "
+    echo "File second created "
     SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret1.secret"
 else
    echo "Secrets null..."  
