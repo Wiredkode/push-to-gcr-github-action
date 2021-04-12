@@ -52,6 +52,11 @@ if [ ! -z "$INPUT_BUILD_ARGS" ]; then
     BUILD_PARAMS="$BUILD_PARAMS --build-arg ${ARG}"
   done
 fi
+if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
+    echo $INPUT_SECRET_KEY_VAL > secret.secret
+    BUID_PARAMS="$BUILD_PARAMS --secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
+fi
+
 
 echo "docker build $BUILD_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT"
 

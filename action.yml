@@ -39,6 +39,12 @@ inputs:
   build_args:
     description: "Pass a list of env vars as build-args for docker-build, separated by commas"
     required: false
+  secret_key_id:
+    description: Secret to forward to docker
+    required: false
+  secret_key_val:
+    description: Secret to forward to docker
+    required: false
 runs:
   using: docker
   image: Dockerfile

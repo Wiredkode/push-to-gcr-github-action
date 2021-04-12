@@ -40,6 +40,7 @@ If you use multi-stage build and want to stop builing at a certain image, you ca
 ### `build_args`
 Pass a list of env vars as build-args for docker-build, separated by commas. ie: `HOST=db.default.svc.cluster.local:5432,USERNAME=db_user`
 
+
 ## Permissions
 The service key you provided must have the `Storage Admin` permission to push the image to GCR.
 It is possible to use a lower access level `Storage Object Admin`, but it will work only for already created registry. You must also add the `Storage Legacy Bucket Reader` permission to the `artifacts.<project id>.appspot.com` bucket for the given service account.
@@ -49,7 +50,10 @@ It is possible to use a lower access level `Storage Object Admin`, but it will w
 [Reference 2](https://stackoverflow.com/a/39750467/6189461)
 
 To create service key/account visit [here](https://console.cloud.google.com/iam-admin/serviceaccounts)
-
+### `secret_key_key`
+Secret id to be passed to docker build
+### `secret_key_val`
+Secret val to be passed to dovcker build
 ## Example usage
 Put desired yml section in the `.github/workflows/build.yml` file
 ### `To perform build & push on every git push`
