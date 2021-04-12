@@ -58,9 +58,10 @@ echo $INPUT_SECRET_KEY_ID
 if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
     echo "Secrets input..." 
     echo $INPUT_SECRET_KEY_VAL > secret.secret
+    cat secret.secret
     SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
 else
-   echo "Secrets null..." 
+   echo "Secrets null..."  
 fi
 
 echo $SECRET_PARAMS
