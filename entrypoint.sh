@@ -52,15 +52,19 @@ if [ ! -z "$INPUT_BUILD_ARGS" ]; then
     BUILD_PARAMS="$BUILD_PARAMS --build-arg ${ARG}"
   done
 fi
-echo "$INPUT_REGISTRY"
-echo "$INPUT_SECRET_KEY_ID"
+echo "Secrets  settings..."
+echo $INPUT_REGISTRY
+echo $INPUT_SECRET_KEY_ID
 if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
+    echo "Secrets input..." 
     echo $INPUT_SECRET_KEY_VAL > secret.secret
-    BUID_PARAMS="$BUILD_PARAMS --secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
+    SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
+else
+   echo "Secrets null..." 
 fi
 
-
-echo "docker build $BUILD_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT"
+echo $SECRET_PARAMS
+echo "docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT"
 
 
 if docker build $BUILD_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT; then
