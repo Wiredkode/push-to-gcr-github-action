@@ -57,8 +57,10 @@ echo $INPUT_REGISTRY
 echo $INPUT_SECRET_KEY_ID
 if [ ! -z "$INPUT_SECRET_KEY_ID" ]; then
     echo "Secrets input..." 
-    echo $INPUT_SECRET_KEY_VAL > secret.secret
+    echo $INPUT_SECRET_KEY_VAL >> secret.secret
+    echo "File creating "
     cat secret.secret
+    echo "File created "
     SECRET_PARAMS="--secret id=$INPUT_SECRET_KEY_ID,src=secret.secret"
 else
    echo "Secrets null..."  
