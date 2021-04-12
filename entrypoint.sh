@@ -74,7 +74,7 @@ echo $SECRET_PARAMS
 echo "docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT"
 
 
-if docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT; then
+if DOCKER_BUILDKIT=1 docker build $BUILD_PARAMS $SECRET_PARAMS $TARGET_ARG -t $TEMP_IMAGE_NAME $FILE_ARG $INPUT_CONTEXT; then
     echo "Image built ..."
 else
     echo "Image building failed. Exiting ..."
